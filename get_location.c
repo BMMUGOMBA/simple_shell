@@ -28,7 +28,6 @@ strcat(file_env, "\0");
 if (stat(file_env, &buffer) == 0)
 {
 free(env_copy);
-
 return (file_env);
 }
 else
@@ -38,7 +37,6 @@ env_token = strtok(NULL, ":");
 
 }
 }
-
 free(env_copy);
 if (stat(command, &buffer) == 0)
 {
