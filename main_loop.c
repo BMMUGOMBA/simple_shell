@@ -14,3 +14,13 @@ char *builtin_str[] = {
 "exit"
 };
 
+do {
+printf("$");
+line = get_input();
+args = input_passer(line);
+status = sys_execute(args, copy_env, builtin_str);
+
+free(line);
+free(args);
+} while (status);
+}
