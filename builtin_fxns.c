@@ -39,3 +39,50 @@ int sys_inbuilt(char **argc)
  * @argc: Typed command
  * Return: Void
 **/
+
+void sys_chdir(char **argc)
+{
+	int j = 0;
+	/*counter j*/
+	int wrdlen = 0;
+	/*argument length*/
+	char wrd[1024];
+
+	if (argc[1] == NULL)
+		chdir(getenv("HOME"));
+	else if (strcmp(argc[1], "-") == 0)
+	{
+		if (getenv("OLDPWD") == NULL)
+			chdir(".");
+		else
+		{
+			chdir(getenv("OLDPWD"));
+			getcwd(wrd, sizeof(wrd));
+			for (wrdlen = 0; wrd[j] != '\0'; j++)
+				wrdlen++;
+			wrd[j] = '\n';
+			write(1, wrd, wrdlen + 1);
+		}
+	}
+	else
+		chdir(argc[1]);
+}
+
+/**
+ * print_env - Prints environment
+ * Return: Void
+**/
+void print_env(void)
+{
+	int j = 0, k = 0;
+
+	while (environ[j])
+	{
+		k = strlen(environ[j]);
+		write(STDOUT_FILENO, environ[j], k);
+		write(STDOUT_FILENO, "\n", 1);
+		j++;
+	}
+}
+
+
