@@ -1,0 +1,4 @@
+# simple_shell
+ALX GROUP PROJECT BATSIRAI MUGOMBA AND BLESSING MOYO
+
+ALX Group project 2
